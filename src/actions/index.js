@@ -14,3 +14,18 @@ export function fetchPosts() {
   };
   return action;
 }
+
+export const CREATE_POSTS = 'CREATE_POSTS';
+export function createPost(values, callback) {
+  const url     = `${ROOT_URL}/posts${API_KEY}`;
+  const request = axios.post(url, values)
+    .then(() => {
+      return callback();
+    });
+
+  const action = {
+    type: CREATE_POSTS,
+    payload: request
+  };
+  return action;
+}
